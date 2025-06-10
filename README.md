@@ -183,8 +183,7 @@
     <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
   </a>
 
-  </style>
-</head>
+
 <body>
   
 
