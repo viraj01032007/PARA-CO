@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Coliving Space - PARA-CO</title>
   <style>
-    body {
+   <body>{
       margin: 0;
       font-family: Arial, sans-serif;
     }
@@ -205,7 +205,7 @@
     }
   </style>
 </head>
-<body>
+</body>
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/919423421979" target="_blank" class="whatsapp-button">
