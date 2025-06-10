@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Coliving Space</title>
+  <title>Coliving Space - PARA-CO</title>
   <style>
     body {
       margin: 0;
@@ -107,23 +107,6 @@
       gap: 20px;
     }
 
-    .states-section {
-      padding: 40px 20px;
-      background-color: #fff;
-    }
-
-    .states-carousel-wrapper {
-      overflow-x: auto;
-      display: flex;
-      gap: 20px;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .states-carousel-wrapper::-webkit-scrollbar {
-      display: none;
-    }
-
     .card {
       width: 300px;
       background: white;
@@ -151,7 +134,53 @@
       font-size: 14px;
       color: #555;
     }
-     .whatsapp-button {
+
+    .city-slider {
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .city-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 10px;
+      flex-grow: 1;
+    }
+
+    .city-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .city-button {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #eee;
+    }
+
+    .city-button.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .arrow-button {
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .whatsapp-button {
       position: fixed;
       width: 60px;
       height: 60px;
@@ -174,18 +203,14 @@
       width: 30px;
       height: 30px;
     }
- 
-
-  
+  </style>
+</head>
+<body>
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/919423421979" target="_blank" class="whatsapp-button">
     <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
   </a>
-
-
-
-  
 
   <!-- Navigation Bar -->
   <div class="navbar">
@@ -210,7 +235,6 @@
       <div class="ceo-name">Viraj Rajput</div>
     </div>
   </div>
-  
 
   <!-- Furniture Section -->
   <div class="furniture-section">
@@ -231,190 +255,74 @@
     </div>
   </div>
 
-
- 
- 
-
-
-<!-- City Slider Section -->
-<div class="city-slider">
-  <h2>Available in Cities</h2>
-  <div class="slider-container" style="display:flex; align-items:center;">
-    <button class="arrow-button" id="scroll-left" aria-label="Scroll Left" style="font-size:24px;">&#8592;</button>
-    <div class="city-scroll" id="city-scroll" style="overflow-x:auto; white-space: nowrap; scroll-behavior: smooth; margin: 0 10px; flex-grow:1;">
-      <button class="city-button active" data-city="Panvel" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Panvel</button>
-      <button class="city-button" data-city="Nerul" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Nerul</button>
-      <button class="city-button" data-city="Kharghar" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Kharghar</button>
-      <button class="city-button" data-city="Vashi" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Vashi</button>
-      <!-- Add more cities if needed -->
+  <!-- City Slider Section -->
+  <div class="city-slider">
+    <h2>Available in Cities</h2>
+    <div class="slider-container">
+      <button class="arrow-button" id="scroll-left">&#8592;</button>
+      <div class="city-scroll" id="city-scroll">
+        <button class="city-button active" data-city="Panvel">Panvel</button>
+        <button class="city-button" data-city="Nerul">Nerul</button>
+        <button class="city-button" data-city="Kharghar">Kharghar</button>
+        <button class="city-button" data-city="Vashi">Vashi</button>
+      </div>
+      <button class="arrow-button" id="scroll-right">&#8594;</button>
     </div>
-    <button class="arrow-button" id="scroll-right" aria-label="Scroll Right" style="font-size:24px;">&#8594;</button>
+    <div id="properties-list" style="margin-top:20px;"></div>
   </div>
 
-  <!-- Properties display -->
-  <div id="properties-list" style="margin-top:20px;">
-    <!-- Properties will be dynamically inserted here -->
-  </div>
-</div>
+  <script>
+    const scrollContainer = document.getElementById('city-scroll');
+    const btnLeft = document.getElementById('scroll-left');
+    const btnRight = document.getElementById('scroll-right');
+    const cityButtons = document.querySelectorAll('.city-button');
+    const propertiesList = document.getElementById('properties-list');
 
-<script>
-  const scrollContainer = document.getElementById('city-scroll');
-  const btnLeft = document.getElementById('scroll-left');
-  const btnRight = document.getElementById('scroll-right');
-  const cityButtons = document.querySelectorAll('.city-button');
-  const propertiesList = document.getElementById('properties-list');
+    const propertiesData = {
+      "Panvel": [
+        { name: "Sunrise Residency", type: "2 BHK Apartment", price: "₹15,000/month" },
+        { name: "Green Meadows", type: "1 BHK Studio", price: "₹10,000/month" }
+      ],
+      "Nerul": [
+        { name: "Palm Residency", type: "Studio Apartment", price: "₹12,000/month" }
+      ],
+      "Kharghar": [
+        { name: "Elite Homes", type: "3 BHK Flat", price: "₹20,000/month" }
+      ],
+      "Vashi": [
+        { name: "City View", type: "2 BHK Apartment", price: "₹18,000/month" }
+      ]
+    };
 
-  // Sample data for properties available in each city
-  const propertiesData = {
-    "Panvel": [
-      { name: "Sunrise Residency", type: "2 BHK Apartment", price: "₹15,000/month" },
-      { name: "Green Meadows", type: "1 BHK Studio", price: "₹10,000/month" }
-    ],
-    "Nerul": [
-      { name: "Ocean View Towers", type: "3 BHK Apartment", price: "₹25,000/month" },
-      { name: "Palm Residency", type: "2 BHK Apartment", price: "₹18,000/month" }
-    ],
-    "Kharghar": [
-      { name: "Lakeview Heights", type: "1 BHK Studio", price: "₹12,000/month" },
-      { name: "Central Park Homes", type: "2 BHK Apartment", price: "₹16,000/month" }
-    ],
-    "Vashi": [
-      { name: "Skyline Residency", type: "3 BHK Apartment", price: "₹22,000/month" },
-      { name: "Palm Grove", type: "1 BHK Studio", price: "₹11,000/month" }
-    ]
-  };
-
-  // Scroll left by 150px
-  btnLeft.addEventListener('click', () => {
-    scrollContainer.scrollBy({ left: -150, behavior: 'smooth' });
-  });
-
-  // Scroll right by 150px
-  btnRight.addEventListener('click', () => {
-    scrollContainer.scrollBy({ left: 150, behavior: 'smooth' });
-  });
-
-  function showProperties(city) {
-    propertiesList.innerHTML = ""; // Clear previous
-
-    const props = propertiesData[city];
-    if (!props || props.length === 0) {
-      propertiesList.innerHTML = `<p>No properties available in ${city}.</p>`;
-      return;
+    function showProperties(city) {
+      propertiesList.innerHTML = "";
+      const list = propertiesData[city] || [];
+      list.forEach(property => {
+        const div = document.createElement("div");
+        div.style.marginBottom = "10px";
+        div.innerHTML = `<strong>${property.name}</strong> - ${property.type} - ${property.price}`;
+        propertiesList.appendChild(div);
+      });
     }
 
-    const list = document.createElement('ul');
-    list.style.listStyleType = 'none';
-    list.style.padding = '0';
-
-    props.forEach(property => {
-      const item = document.createElement('li');
-      item.style.padding = '10px';
-      item.style.marginBottom = '10px';
-      item.style.border = '1px solid #ccc';
-      item.style.borderRadius = '8px';
-
-      item.innerHTML = `
-        <strong>${property.name}</strong><br/>
-        Type: ${property.type}<br/>
-        Price: <span style="color:green;">${property.price}</span>
-      `;
-      list.appendChild(item);
+    cityButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        cityButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        showProperties(btn.dataset.city);
+      });
     });
 
-    propertiesList.appendChild(list);
-  }
-
-  // Initial show for default active city
-  const defaultCity = document.querySelector('.city-button.active').dataset.city;
-  showProperties(defaultCity);
-
-  // Handle city button clicks
-  cityButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      cityButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const city = btn.dataset.city;
-      showProperties(city);
+    btnLeft.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
     });
-  });
-</script>
 
-<style>
-  .city-button.active {
-    background-color: #5e2ca5;
-    color: white;
-    border-radius: 20px;
-  }
-  .city-button {
-    background-color: #eee;
-    border: none;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  .city-button:hover {
-    background-color: #ccc;
-  }
-  .arrow-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    user-select: none;
-  }
-</style>
+    btnRight.addEventListener("click", () => {
+      scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+    });
 
-<footer>
-  <!-- Team Members Section -->
-<div class="team-section" style="padding: 50px 20px; background-color: #f0f0f0; text-align: center;">
-  <h2 style="font-size: 32px; margin-bottom: 30px;">Meet Our Team</h2>
-  <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-    
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Shreyansh Chaubey" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Shreyansh Chaubey</h3>
-      <p style="color: #555;">Operations Head</p>
-    </div>
-
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Jayesh Bhosle" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Jayesh Bhosle</h3>
-      <p style="color: #555;">Technical Lead</p>
-    </div>
-
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Viraj Rajput" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Viraj Rajput</h3>
-      <p style="color: #555;">Founder & CEO</p>
-    </div>
-
-    <!-- New Members Below -->
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Priya Mehta" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Priya Mehta</h3>
-      <p style="color: #555;">Marketing Manager</p>
-    </div>
-
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Ankit Sharma" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Ankit Sharma</h3>
-      <p style="color: #555;">Finance Analyst</p>
-    </div>
-
-    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
-      <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="Neha Gupta" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
-      <h3 style="margin: 10px 0 5px;">Neha Gupta</h3>
-      <p style="color: #555;">Product Designer</p>
-    </div>
-
-  </div>
-</div>
-
-
-</footer>
-
-
+    // Initial load
+    showProperties("Panvel");
+  </script>
 </body>
 </html>
-
-
