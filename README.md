@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -174,9 +174,7 @@
       width: 30px;
       height: 30px;
     }
-  </style>
-</head>
-<body>
+ 
 
   
 
