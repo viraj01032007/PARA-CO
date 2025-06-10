@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,6 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Navigation bar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -31,7 +30,6 @@
       font-size: 16px;
     }
 
-    /* Hero Section */
     .hero {
       background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80');
       background-size: cover;
@@ -42,6 +40,7 @@
       flex-direction: column;
       justify-content: center;
       padding-left: 50px;
+      position: relative;
     }
 
     .hero h1 {
@@ -76,37 +75,63 @@
       cursor: pointer;
     }
 
-    /* Furniture Section */
+    .ceo-info {
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      text-align: right;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      font-family: 'Georgia', serif;
+    }
+
+    .ceo-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ceo-name {
+      font-size: 16px;
+      font-style: italic;
+      font-weight: bold;
+    }
+
     .furniture-section {
       display: flex;
       justify-content: space-around;
-      align-items: flex-start;
+      flex-wrap: wrap;
       padding: 50px 40px;
       background-color: #f9f9f9;
-      flex-wrap: wrap;
       gap: 20px;
     }
 
-    /* States Section */
     .states-section {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
       padding: 40px 20px;
       background-color: #fff;
-      max-width: 1300px;
-      margin: 0 auto;
+    }
+
+    .states-carousel-wrapper {
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .states-carousel-wrapper::-webkit-scrollbar {
+      display: none;
     }
 
     .card {
+      width: 300px;
       background: white;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 20px;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-shrink: 0;
     }
 
     .card img {
@@ -126,9 +151,44 @@
       font-size: 14px;
       color: #555;
     }
+     .whatsapp-button {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+    }
   </style>
 </head>
 <body>
+
+  
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919423421979" target="_blank" class="whatsapp-button">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
+  </a>
+
+  </style>
+</head>
+<body>
+  
 
   <!-- Navigation Bar -->
   <div class="navbar">
@@ -142,87 +202,223 @@
 
   <!-- Hero Section -->
   <div class="hero">
-    <h1>Find Your Co-living Space</h1>
+    <h1>Find Your Coliving Space</h1>
     <p>Discover fully-furnished, beautifully designed spaces to live and work in comfort.</p>
     <div class="search-box">
       <input type="text" placeholder="Search for locations..." />
       <button>Search</button>
     </div>
+    <div class="ceo-info">
+      <div class="ceo-title">Founder & CEO</div>
+      <div class="ceo-name">Viraj Rajput</div>
+    </div>
   </div>
+  
 
   <!-- Furniture Section -->
   <div class="furniture-section">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Modern Living Room" />
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" />
       <h2>Modern Living Room</h2>
       <p>Spacious room with natural light and minimalist furniture style.</p>
     </div>
-
     <div class="card">
-      <img src="https://media.designcafe.com/wp-content/uploads/2020/04/17160430/cozy-bedroom-for-your-home.jpg" alt="Cozy Bedroom" />
+      <img src="https://media.architecturaldigest.com/photos/5eac5fa22105f13b72dede45/4:3/w_1420,h_1065,c_limit/111LexowAve_Aug18-1074.jpg" />
       <h2>Cozy Bedroom</h2>
       <p>A peaceful, cozy space with warm tones and soft bedding.</p>
     </div>
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" alt="Stylish Dining Area" />
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" />
       <h2>Stylish Dining Area</h2>
       <p>Elegant dining with modern table, chairs and ambient lighting.</p>
     </div>
   </div>
 
-  <!-- Indian States Section -->
-  <div class="states-section">
 
-    <div class="card">
-      <img src="https://s7ap1.scene7.com/is/image/incredibleindia/varaha-lakshmi-narasimha-temple-buddhist-complex-visakhapatnam-andhra-pradesh-1-attr-hero?qlt=82&ts=1726744344834" alt="Andhra Pradesh - Tirupati Temple" />
-      <h2>Andhra Pradesh</h2>
-      <p>Tirumala Venkateswara Temple</p>
+ 
+  </style>
+</head>
+<body>
+
+<!-- City Slider Section -->
+<div class="city-slider">
+  <h2>Available in Cities</h2>
+  <div class="slider-container" style="display:flex; align-items:center;">
+    <button class="arrow-button" id="scroll-left" aria-label="Scroll Left" style="font-size:24px;">&#8592;</button>
+    <div class="city-scroll" id="city-scroll" style="overflow-x:auto; white-space: nowrap; scroll-behavior: smooth; margin: 0 10px; flex-grow:1;">
+      <button class="city-button active" data-city="Panvel" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Panvel</button>
+      <button class="city-button" data-city="Nerul" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Nerul</button>
+      <button class="city-button" data-city="Kharghar" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Kharghar</button>
+      <button class="city-button" data-city="Vashi" style="display:inline-block; margin-right:10px; padding:8px 16px; cursor:pointer;">Vashi</button>
+      <!-- Add more cities if needed -->
+    </div>
+    <button class="arrow-button" id="scroll-right" aria-label="Scroll Right" style="font-size:24px;">&#8594;</button>
+  </div>
+
+  <!-- Properties display -->
+  <div id="properties-list" style="margin-top:20px;">
+    <!-- Properties will be dynamically inserted here -->
+  </div>
+</div>
+
+<script>
+  const scrollContainer = document.getElementById('city-scroll');
+  const btnLeft = document.getElementById('scroll-left');
+  const btnRight = document.getElementById('scroll-right');
+  const cityButtons = document.querySelectorAll('.city-button');
+  const propertiesList = document.getElementById('properties-list');
+
+  // Sample data for properties available in each city
+  const propertiesData = {
+    "Panvel": [
+      { name: "Sunrise Residency", type: "2 BHK Apartment", price: "₹15,000/month" },
+      { name: "Green Meadows", type: "1 BHK Studio", price: "₹10,000/month" }
+    ],
+    "Nerul": [
+      { name: "Ocean View Towers", type: "3 BHK Apartment", price: "₹25,000/month" },
+      { name: "Palm Residency", type: "2 BHK Apartment", price: "₹18,000/month" }
+    ],
+    "Kharghar": [
+      { name: "Lakeview Heights", type: "1 BHK Studio", price: "₹12,000/month" },
+      { name: "Central Park Homes", type: "2 BHK Apartment", price: "₹16,000/month" }
+    ],
+    "Vashi": [
+      { name: "Skyline Residency", type: "3 BHK Apartment", price: "₹22,000/month" },
+      { name: "Palm Grove", type: "1 BHK Studio", price: "₹11,000/month" }
+    ]
+  };
+
+  // Scroll left by 150px
+  btnLeft.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: -150, behavior: 'smooth' });
+  });
+
+  // Scroll right by 150px
+  btnRight.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: 150, behavior: 'smooth' });
+  });
+
+  function showProperties(city) {
+    propertiesList.innerHTML = ""; // Clear previous
+
+    const props = propertiesData[city];
+    if (!props || props.length === 0) {
+      propertiesList.innerHTML = `<p>No properties available in ${city}.</p>`;
+      return;
+    }
+
+    const list = document.createElement('ul');
+    list.style.listStyleType = 'none';
+    list.style.padding = '0';
+
+    props.forEach(property => {
+      const item = document.createElement('li');
+      item.style.padding = '10px';
+      item.style.marginBottom = '10px';
+      item.style.border = '1px solid #ccc';
+      item.style.borderRadius = '8px';
+
+      item.innerHTML = `
+        <strong>${property.name}</strong><br/>
+        Type: ${property.type}<br/>
+        Price: <span style="color:green;">${property.price}</span>
+      `;
+      list.appendChild(item);
+    });
+
+    propertiesList.appendChild(list);
+  }
+
+  // Initial show for default active city
+  const defaultCity = document.querySelector('.city-button.active').dataset.city;
+  showProperties(defaultCity);
+
+  // Handle city button clicks
+  cityButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      cityButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const city = btn.dataset.city;
+      showProperties(city);
+    });
+  });
+</script>
+
+<style>
+  .city-button.active {
+    background-color: #5e2ca5;
+    color: white;
+    border-radius: 20px;
+  }
+  .city-button {
+    background-color: #eee;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+  }
+  .city-button:hover {
+    background-color: #ccc;
+  }
+  .arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+  }
+</style>
+
+<footer>
+  <!-- Team Members Section -->
+<div class="team-section" style="padding: 50px 20px; background-color: #f0f0f0; text-align: center;">
+  <h2 style="font-size: 32px; margin-bottom: 30px;">Meet Our Team</h2>
+  <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+    
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Shreyansh Chaubey" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Shreyansh Chaubey</h3>
+      <p style="color: #555;">Operations Head</p>
     </div>
 
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg" alt="Bihar - Mahabodhi Temple" />
-      <h2>Bihar</h2>
-      <p>Mahabodhi Temple, Bodh Gaya</p>
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Jayesh Bhosle" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Jayesh Bhosle</h3>
+      <p style="color: #555;">Technical Lead</p>
     </div>
 
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Abbey_Falls_2014.jpg" alt="Karnataka - Abbey Falls" />
-      <h2>Karnataka</h2>
-      <p>Abbey Falls, Coorg</p>
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Viraj Rajput" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Viraj Rajput</h3>
+      <p style="color: #555;">Founder & CEO</p>
     </div>
 
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Gateway_of_India_Mumbai_03-2016_img3.jpg" alt="Maharashtra - Gateway of India" />
-      <h2>Maharashtra</h2>
-      <p>Gateway of India, Mumbai</p>
+    <!-- New Members Below -->
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Priya Mehta" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Priya Mehta</h3>
+      <p style="color: #555;">Marketing Manager</p>
     </div>
 
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Meenakshi_Temple_Palace_Entrance_View_2010.jpg" alt="Tamil Nadu - Meenakshi Temple" />
-      <h2>Tamil Nadu</h2>
-      <p>Meenakshi Temple, Madurai</p>
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Ankit Sharma" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Ankit Sharma</h3>
+      <p style="color: #555;">Finance Analyst</p>
     </div>
 
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Fatehpur_Sikri_2007.jpg" alt="Uttar Pradesh - Fatehpur Sikri" />
-      <h2>Uttar Pradesh</h2>
-      <p>Fatehpur Sikri</p>
-    </div>
-
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Hawa_Mahal_Palace%2C_Jaipur.jpg" alt="Rajasthan - Hawa Mahal" />
-      <h2>Rajasthan</h2>
-      <p>Hawa Mahal, Jaipur</p>
-    </div>
-
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Sabarmati_Ashram_-_panoramio.jpg" alt="Gujarat - Sabarmati Ashram" />
-      <h2>Gujarat</h2>
-      <p>Sabarmati Ashram, Ahmedabad</p>
+    <div class="team-card" style="width: 250px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px;">
+      <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="Neha Gupta" style="width: 100%; border-radius: 50%; height: 200px; object-fit: cover; margin-bottom: 15px;">
+      <h3 style="margin: 10px 0 5px;">Neha Gupta</h3>
+      <p style="color: #555;">Product Designer</p>
     </div>
 
   </div>
+</div>
+
+
+</footer>
+
 
 </body>
 </html>
+
+
