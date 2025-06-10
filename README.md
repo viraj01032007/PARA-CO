@@ -184,7 +184,7 @@
   </a>
 
 
-<body>
+
   
 
   <!-- Navigation Bar -->
@@ -234,7 +234,7 @@
 
  
  
-<body>
+
 
 <!-- City Slider Section -->
 <div class="city-slider">
